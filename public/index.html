@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+<!--
+	<meta property="og:site_name" content="Pearls Before Swine"/>
+	<meta property="og:title" content="Cover Page"/>
+	<meta property="og:url" content="http://pearlsbeforeswine.ca"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:image" content="http://static1.squarespace.com/static/573cf70e1d07c0e136e34759/t/573cfde32fe1312a9580af23/1467570356048/?format=1000w"/>
+	<meta itemprop="name" content="Cover Page"/>
+	<meta itemprop="url" content="http://pearlsbeforeswine.ca/"/>
+	<meta itemprop="thumbnailUrl" content="http://static1.squarespace.com/static/573cf70e1d07c0e136e34759/t/573cfde32fe1312a9580af23/1467570356048/?format=1000w"/>
+	<link rel="image_src" href="http://static1.squarespace.com/static/573cf70e1d07c0e136e34759/t/573cfde32fe1312a9580af23/1467570356048/?format=1000w" />
+	<meta itemprop="image" content="http://static1.squarespace.com/static/573cf70e1d07c0e136e34759/t/573cfde32fe1312a9580af23/1467570356048/?format=1000w"/>
+	<meta name="twitter:title" content="Cover Page"/>
+	<meta name="twitter:image" content="http://static1.squarespace.com/static/573cf70e1d07c0e136e34759/t/573cfde32fe1312a9580af23/1467570356048/?format=1000w"/>
+	<meta name="twitter:url" content="http://pearlsbeforeswine.ca"/>
+	<meta name="twitter:card" content="summary"/>
+	<meta name="description" content="" /> -->
+
+
+	<title>Pearls Before Swine</title>
+	<link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="css/semantic.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/styles.css">
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="js/semantic.min.js"></script>
+
+</head>
+<body>
+	<div class="fullscreen-bg">
+    <video loop muted autoplay class="fullscreen-bg__video">
+        <!-- <source src="video/big_buck_bunny.webm" type="video/webm"> -->
+        <source src="video/train.mp4" type="video/mp4">
+        <!-- <source src="video/big_buck_bunny.ogv" type="video/ogg"> -->
+    </video>
+    <div class="video-overlay"></div>
+	</div>
+
+
+	<div class="content">
+		<h1 class="title">
+				Pearls Before Swine
+		</h1>
+	</div>
+
+
+
+	<div class="ui modal segment">
+
+		<div class="column">
+			<div class="ui header centered"><h4>Contact Us</h4></div>
+			<form class="ui form">
+
+			  <div class="two fields">
+			    <div class="field">
+			      <label>First name</label>
+			      <input type="text" id="firstName" placeholder="First Name">
+			    </div>
+			    <div class="field">
+			      <label>Last name</label>
+			      <input type="text" id="lastName" placeholder="Last Name">
+			    </div>
+			  </div>
+
+
+			    <div class="field">
+			      <label>Email Address</label>
+			      <input class="" id="email" type="text" placeholder="Email Address">
+			    </div>
+
+
+		    	<div class="one field">
+		      	<label>Subject</label>
+		      	<input class="" type="text" id="subject" placeholder="Subject">
+		    	</div>
+
+
+
+		    	<div class="one field">
+		      	<label>Message</label>
+		      	<textarea class="" type="text" id="message" placeholder="Message"></textarea>
+		    	</div>
+
+					<div class="ui fluid small submit button" style="border: solid 2px black">submit</div>
+
+			</form>
+		</div>
+
+	</div>
+
+	<script>
+
+		$(document).ready(function(){
+
+
+			$('.title').on('click', function(){
+				$('.ui.modal').modal('show');
+			});
+
+
+			$('.ui.form')
+					.form({
+						fields: {
+							email: 'empty',
+							firstName: 'empty',
+							lastName: 'empty',
+							subject: 'empty',
+							message: 'empty'
+						}
+					});
+
+			$('.ui.submit').on('click', function(event){
+
+
+				var name = $("#firstName").val() + " " + $("#lastName").val();
+				var email = $("#email").val();
+				var subject = $("#subject").val();
+				var message = $("#message").val();
+
+				var data = {
+					fullName: name,
+					email: email,
+					subject: subject,
+					message: message
+				}
+
+				console.log(data);
+
+
+
+				$.ajax({
+				  type: "POST",
+				  url: '/contact',
+				  data: data
+				}).done(function(){
+					$('form').form('clear')
+					$('.ui.modal').modal('hide');
+				});
+
+				event.preventDefault();
+
+			});
+
+		})
+	</script>
+
+</body>
+</html>

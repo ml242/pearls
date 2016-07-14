@@ -1,0 +1,22 @@
+{
+  "name": "new_pearls",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "gulp": "^3.9.1",
+    "nodemailer": "^2.5.0",
+    "nodemailer-mailgun-transport": "^1.2.1",
+    "nodemailer-smtp-transport": "^2.6.0",
+    "nodemon": "^1.9.2",
+    "semantic": "0.0.1"
+  }
+}
