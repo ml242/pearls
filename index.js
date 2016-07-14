@@ -48,7 +48,7 @@ function sendEmail(data) {
 
 	nodemailerMailgun.sendMail({
   		from: data.email, // sender address
-	    to: 'ml242@nyskiblog.com', // list of receivers
+	    to: 'himo@pearlsbeforeswine.ca', // list of receivers
 	    subject: "from " + data.fullName + ":" + data.subject, // Subject line
 	    text: data.message, //, // plaintext body
 
