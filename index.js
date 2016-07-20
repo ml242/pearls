@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 var mg = require('nodemailer-mailgun-transport');
+var path = require('path');
 var bodyParser = require('body-parser')
 
 
@@ -10,8 +11,11 @@ const nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 
 
-app.use(express.static('public'));
+//app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 
 app.use(bodyParser.urlencoded({
 		extended: true
@@ -37,7 +41,7 @@ app.get('/', router);
 app.post('/vendor', function(req, response){
 	if (req.body.pass == "pbsvendors") {
 		console.log('ok password');
-		response.render(__dirname + "/public/vendor");
+		response.render(__dirname + "/public/vendor.html");
 	} else {
 		console.log('failed password')
 		response.json({"done" : true, "msg": "Unauthorized", "status" : 401});
