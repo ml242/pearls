@@ -12,9 +12,11 @@ var smtpTransport = require('nodemailer-smtp-transport');
 
 app.use(express.static('public'));
 
+
 app.use(bodyParser.urlencoded({
-	extended: true
-}));
+		extended: true
+	})
+);
 
 /**bodyParser.json(options)
  * Parses the text as JSON and exposes the resulting object on req.body.
@@ -23,20 +25,32 @@ app.use(bodyParser.json());
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 
+
 app.get('/', router);
 
 //router.post('/contact', jsonParser, sendEmail); // handle the route at yourdomain.com/sayHello
  app.post('/contact', function(req, response){
+	 sendEmail(req.body);
+	 response.json({"done" : true, "status" : 200});
+ });
 
-	 sendEmail(req.body)
- }); // handle the route at yourdomain.com/sayHello
+app.post('/vendor', function(req, response){
+	if (req.body.pass == "pbsvendors") {
+		console.log('ok password');
+		response.render(__dirname + "/public/vendor");
+	} else {
+		console.log('failed password')
+		response.json({"done" : true, "msg": "Unauthorized", "status" : 401});
+	}
+}); // handle the route at yourdomain.com/sayHello
 
 function sendEmail(data) {
 
 	// console.log('request received in sendEmail')
 
 
-  var auth = {    auth: {
+  var auth = {
+  	auth: {
         api_key: process.env.mailgunPearlsAPI,
       	domain: mailgunPearlsDomain
   	}
@@ -61,12 +75,11 @@ function sendEmail(data) {
 	});
 };
 
+app.use("*",function(req,res){
+	//res.sendFile(__dirname + "/public/404.html");
+});
 
 const port = 3000;
-//
-//app.get('/', (request, response) => {
-//  response.sendfile(index)
-//});
 
 app.listen(process.env.PORT || 3000, (err) => {
   if (err) {

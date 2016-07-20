@@ -46,15 +46,19 @@
 		<h1 class="title">
 				Pearls Before Swine
 		</h1>
+
+		<h1 class="vendor">
+			vendor link
+		</h1>
 	</div>
 
 
 
-	<div class="ui modal segment">
+	<div class="ui modal contact segment">
 
 		<div class="column">
 
-			<form class="ui form">
+			<form class="ui form contact">
 
 			<div class="field">
 				<div class="ui header centered"><h4>Contact Us</h4></div>
@@ -90,12 +94,40 @@
 					<textarea class="" type="text" id="message" placeholder="Message"></textarea>
 		    	</div>
 
-					<div class="ui fluid small submit button" style="border: solid 2px black">Submit</div>
+				<div class="ui small submit contact button" style="border: solid 2px rgba(48,48,48,.9)">Submit</div>
 
 			</form>
 		</div>
 
 	</div>
+
+
+	<div class="ui modal vendor segment">
+
+		<div class="column">
+
+			<form class="ui form vendor">
+
+				<div class="field">
+					<div class="ui header centered"><h4>Access the Vendor Page</h4></div>
+				</div>
+
+
+				<div class="field">
+					<label>Password</label>
+					<input class="" id="password" type="text" placeholder="Password">
+				</div>
+
+				<div class="ui small submit vendor button" style="border: solid 2px rgba(48,48,48,.9)">Submit</div>
+
+				<div class="ui error message">Invalid password, contact <a class="contact">Pearls Before Swine</a> if you need wholesaler info</div>
+
+			</form>
+		</div>
+
+	</div>
+
+
 
 	<script>
 
@@ -103,11 +135,26 @@
 
 
 			$('.title').on('click', function(){
-				$('.ui.modal').modal('show');
+				$('.ui.modal.contact').modal('show');
 			});
 
+			$('.contact').on('click', function(){
 
-			$('.ui.form')
+				$('.ui.form.vendor').form('clear')
+				$('.ui.form.vendor').find('.ui.error.message').remove();
+
+				$('.ui.modal.vendor').remove();
+				$('.ui.modal.contact').modal('show');
+
+
+
+			});
+
+			$('.vendor').on('click', function(){
+				$('.ui.modal.vendor').modal('show');
+			});
+
+			$('.ui.form.contact')
 					.form({
 						fields: {
 							email: 'empty',
@@ -118,8 +165,17 @@
 						}
 					});
 
-			$('.ui.submit').on('click', function(event){
+			$('.ui.form.vendor')
+					.form({
+						fields: {
+							password: 'empty'
+						}
+					});
 
+			$('.ui.submit.contact').on('click', function(e){
+
+				e.preventDefault();
+				e.stopPropagation();
 
 				var name = $("#firstName").val() + " " + $("#lastName").val();
 				var email = $("#email").val();
@@ -131,24 +187,57 @@
 					email: email,
 					subject: subject,
 					message: message
-				}
+				};
 
 				console.log(data);
-
-
 
 				$.ajax({
 				  type: "POST",
 				  url: '/contact',
 				  data: data
 				}).done(function(){
-					$('form').form('clear')
+					$('form').form('clear');
 					$('.ui.modal').modal('hide');
 				});
 
-				event.preventDefault();
+
 
 			});
+
+
+
+			$('.ui.submit.vendor').on('click', function(e){
+
+				e.preventDefault();
+				e.stopPropagation();
+
+				var pass = $("#password").val();
+
+				var data = {
+					pass: pass
+				};
+
+				console.log(data);
+
+
+				$.ajax({
+					type: "POST",
+					url: '/vendor',
+					data: data
+				}).done(function(json){
+
+					if (json.status === 401) {
+						$('.ui.error.message').show();
+					} else{
+						$('form').form('clear');
+						$('.ui.modal').modal('hide');
+					}
+
+			});
+
+
+			});
+
 
 		})
 	</script>
