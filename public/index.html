@@ -204,6 +204,10 @@
 
 			});
 
+			$('.catalog').on('click', function(e){
+				e.preventDefault();
+				e.stopPropagation();
+			})
 
 
 			$('.ui.submit.vendor').on('click', function(e){
@@ -231,6 +235,12 @@
 					} else{
 						$('form').form('clear');
 						$('.ui.modal').modal('hide');
+						$('.ui.modal').remove();
+						
+//						crazy, just going to redraw the page with the json response
+						$('h1.title').html(json)
+						$('.title').removeClass('title')
+						$('.vendor').removeClass('vendor').html('')
 					}
 
 			});
