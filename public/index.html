@@ -33,7 +33,8 @@
 </head>
 <body>
 	<div class="fullscreen-bg">
-    <video loop muted autoplay class="fullscreen-bg__video">
+    <!--<video loop muted autoplay class="fullscreen-bg__video">-->
+    <video id="video" autoplay class="fullscreen-bg__video">
         <!-- <source src="video/big_buck_bunny.webm" type="video/webm"> -->
         <source src="video/train.mp4" type="video/mp4">
         <!-- <source src="video/big_buck_bunny.ogv" type="video/ogg"> -->
@@ -251,11 +252,35 @@
 						$('.title').removeClass('title')
 						$('.vendor').removeClass('vendor').html('')
 					}
-
+				});
 			});
 
+			var count = 0;
+			var vid = document.getElementById("video");
+			vid.addEventListener('ended', nextVideo);
 
-			});
+			function nextVideo(e) {
+				count ++
+				debugger;
+				var parent = $(this).parent()
+				parent.fadeOut(1000);
+				setTimeout(function() {
+					parent.fadeIn(1000);
+					if (count == 1) {
+						debugger;
+						vid.src = '/video/buildinghimo.mp4'
+						vid.play();
+					} else if (count == 2) {
+						debugger;
+						vid.src = '/video/himopollen.mp4'
+						vid.play();
+					} else {
+						count = 0;
+						vid.src = '/video/train.mp4'
+					}
+				}, 2000)
+
+			}
 
 
 		})
