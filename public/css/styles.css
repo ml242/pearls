@@ -41,6 +41,11 @@ body {
     font-style: normal;
     color: #FFF;
 }
+.catalog {
+    text-rendering: optimizeLegibility;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 15px;
+}
 
 h1 {
     /*font-family: 'Playfair Display', serif;*/
