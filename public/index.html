@@ -158,23 +158,27 @@
 				return "";
 			}
 
-			function checkCookie() {
+			function checkCookie(term) {
 
-				var visits = parseInt(getCookie("visits"));
-
-				if (visits == null || undefined || "" || 0) {
-					setCookie("visits", 1, 30);
-				} else {
-					visits = visits + 1
-					setCookie("visits", visits, 30)
+				if (term == "visits"){
+					var visits = parseInt(getCookie("visits"));
+					if (!visits) {
+						setCookie("visits", 1, 30);
+					} else {
+						visits = visits + 1;
+						setCookie("visits", visits, 30)
+					}
 				}
+
 			}
 
 			checkCookie("visits");
+
 			playVideo();
 
+
 			$(document).on('keyup keypress', 'form', function(e) {
-				debugger;
+
 				if(e.keyCode == 13) {
 					e.preventDefault();
 					e.stopPropagation();
@@ -304,8 +308,6 @@
 				var count = getCookie("visits");
 
 				var numVids = 3; //will need to be updated with future films
-
-				debugger;
 
 				if (count % numVids === 0) {
 					vid.src = '/video/train.mp4';
