@@ -33,6 +33,19 @@
 </head>
 <body>
 
+<div class="ui grid">
+	<div class="computer tablet only row">
+		<div class="ui fixed inverted borderless menu navbar grid">
+			<div class="right menu">
+				<a href="#" class="item vendor">vendors</a>
+				<a href="#" id="mute" class="item">mute</a>
+				<a href="#" id="unmute" class="item hide">unmute</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
 	<div class="fullscreen-bg">
 		<video id="video" loop class="fullscreen-bg__video">
 			<source src="" type="video/mp4">
@@ -48,9 +61,9 @@
 			<img src="img/logo_video.png" alt="pearls before swine logo">
 		</h1>
 
-		<h1 class="vendor">
-			vendors
-		</h1>
+		<!--<h1 class="vendor">-->
+			<!--vendors-->
+		<!--</h1>-->
 	</div>
 
 
@@ -320,6 +333,29 @@
 					vid.play();
 				}
 			}
+
+			$('#mute').on('click', function () {
+
+				$.each($('video'), function () {
+					this.muted = true;
+				});
+				$('#mute').toggleClass('hide');
+				$('#unmute').toggleClass('hide');
+
+			});
+
+			$('#unmute').on('click', function () {
+
+
+				$.each($('video'), function () {
+					this.muted = false;
+				});
+				$('#mute').toggleClass('hide');
+				$('#unmute').toggleClass('hide');
+
+			});
+
+
 		})
 	</script>
 
