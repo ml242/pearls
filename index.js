@@ -56,7 +56,7 @@ function sendEmail(data) {
   var auth = {
   	auth: {
         api_key: process.env.mailgunPearlsAPI,
-      	domain: mailgunPearlsDomain
+      	domain: process.env.mailgunPearlsDomain
   	}
   }
 

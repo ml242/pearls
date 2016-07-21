@@ -41,6 +41,11 @@ h4 {
     color: rgba(0,0,0,0.8);
 }
 
+.vendor {
+    color: lightgray;
+    font-size: 80%;
+}
+
 .fullscreen-bg {
     position: fixed;
     top: 0;
