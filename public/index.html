@@ -63,9 +63,9 @@
 			<img src="img/logo_video.png" alt="pearls before swine logo">
 		</h1>
 
-		<!--<h1 class="vendor">-->
-			<!--vendors-->
-		<!--</h1>-->
+		<!--<div class="mobilePlay">-->
+			<!--<img class="" src="img/play.png">-->
+		<!--</div>-->
 	</div>
 
 
@@ -321,9 +321,16 @@
 				if ($(window).width() < 768) {
 					$.each($('video'), function () {
 						this.muted = true;
+						this.pause();
 					});
 					$('#mute').toggleClass('hide');
 					$('#unmute').toggleClass('hide');
+				}
+				if ($(window).width() > 768) {
+					$.each($('video'), function () {
+						this.play();
+						this.muted = false;
+					});
 				}
 
 				var vid = document.getElementById("video");
@@ -364,6 +371,10 @@
 				$('#unmute').toggleClass('hide');
 
 			});
+
+//			$('.mobilePlay img').on('click', function(){
+//
+//			})
 
 
 		})
