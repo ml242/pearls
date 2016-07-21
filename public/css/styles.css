@@ -30,7 +30,7 @@ body {
 }
 
 h1 {
-    font-family: 'Playfair Display', serif;
+    /*font-family: 'Playfair Display', serif;*/
     text-rendering: optimizeLegibility;
     text-align: center;
     font-size: 1.2rem;
@@ -42,7 +42,7 @@ h1 {
 }
 
 h4 {
-    font-family: 'Playfair Display', serif;
+    /*font-family: 'Playfair Display', serif;*/
     text-rendering: optimizeLegibility;
     color: rgba(0,0,0,0.8);
 }
@@ -53,7 +53,7 @@ h4 {
 }
 
 h2 {
-    font-family: 'Playfair Display', serif;
+    /*font-family: 'Playfair Display', serif;*/
     text-align: center;
     /*font-size: 1.2rem;*/
     max-height: 8vh;
@@ -112,9 +112,10 @@ h2 {
     .fullscreen-bg {
         background: url('../img/image1.jpg') center center / cover no-repeat;
     }
-
-
     .fullscreen-bg__video {
         display: none;
+    }
+    .title img {
+        max-width: 95%;
     }
 }

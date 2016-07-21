@@ -22,7 +22,7 @@
 
 
 	<title>Pearls Before Swine</title>
-	<link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
+	<!--<link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>-->
 
 	<link rel="stylesheet" href="css/semantic.min.css">
 	<link rel="stylesheet" type="text/css" href="./css/styles.css">
@@ -34,7 +34,7 @@
 <body>
 
 <div class="ui grid">
-	<div class="computer tablet only row">
+	<div class="computer tablet row">
 		<div class="ui fixed inverted borderless menu navbar grid">
 			<div class="right menu">
 				<a href="#" class="item vendor">vendors</a>
@@ -108,7 +108,7 @@
 					<textarea class="" type="text" id="message" placeholder="Message"></textarea>
 		    	</div>
 
-				<div class="ui small submit contact button" style="border: solid 2px rgba(48,48,48,.9)">Submit</div>
+				<div class="ui small submit contact button" style="border: solid 1px rgba(48,48,48,.9)">Submit</div>
 
 			</form>
 		</div>
@@ -132,7 +132,7 @@
 					<input class="" id="password" type="text" placeholder="Password">
 				</div>
 
-				<div class="ui small submit vendor button" style="border: solid 2px rgba(48,48,48,.9)">Submit</div>
+				<div class="ui small submit vendor button" style="border: solid 1px rgba(48,48,48,.9)">Submit</div>
 
 				<div class="ui error message">Invalid password, contact <a class="contact">Pearls Before Swine</a> if you need wholesaler info</div>
 
@@ -315,6 +315,14 @@
 
 
 			function playVideo() {
+
+				if ($(window).width() < 768) {
+					$.each($('video'), function () {
+						this.muted = true;
+					});
+					$('#mute').toggleClass('hide');
+					$('#unmute').toggleClass('hide');
+				}
 
 				var vid = document.getElementById("video");
 
