@@ -148,6 +148,13 @@
 
 	<script>
 
+		function catalogModal(){
+			$('a.catalog').on('click', function(){
+				console.log('clicked')
+				$('.ui.modal.catalogModal').modal('show');
+			});
+		}
+
 		$(document).ready(function(){
 
 			function setCookie(cname, cvalue, exdays) {
