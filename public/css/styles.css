@@ -46,6 +46,10 @@ body {
     font-family: 'Playfair Display', serif;
     letter-spacing: 15px;
 }
+label {
+    font-weight: normal !important;
+    letter-spacing: .5px;
+}
 
 h1 {
     /*font-family: 'Playfair Display', serif;*/
