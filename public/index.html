@@ -32,6 +32,7 @@
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="js/semantic.min.js"></script>
+	<script src="https://use.fontawesome.com/2fb058b55d.js"></script>
 
 </head>
 <body>
@@ -41,8 +42,9 @@
 		<div class="ui fixed inverted borderless menu navbar grid">
 			<div class="right menu">
 				<a href="#" class="item vendor">vendors</a>
-				<a href="#" id="mute" class="item">mute</a>
-				<a href="#" id="unmute" class="item hide">unmute</a>
+				<a href="#" id="mute" class="item"><i class="fa fa-volume-off" aria-hidden="true"></i>
+				</a>
+				<a href="#" id="unmute" class="item hide"><i class="fa fa-volume-up" aria-hidden="true"></i></a>
 			</div>
 		</div>
 	</div>
@@ -325,6 +327,7 @@
 
 			function playVideo() {
 
+
 				if ($(window).width() < 768) {
 					$.each($('video'), function () {
 						this.muted = true;
@@ -346,6 +349,9 @@
 
 				var numVids = 3; //will need to be updated with future films
 
+				var nav = $('.ui.inverted.menu .right a');
+				nav.css({color: "lightgray"});
+
 				if (count % numVids === 0) {
 					vid.src = '/video/train.mp4';
 					vid.play();
@@ -355,6 +361,7 @@
 				} else if (count % numVids === 2){
 					vid.src = '/video/buildinghimo.mp4';
 					vid.play();
+					nav.css({'color': "#666666"});
 				}
 			}
 
