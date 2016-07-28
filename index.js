@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 var mg = require('nodemailer-mailgun-transport');
 var path = require('path');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+var mailer = require("./mailer.js");
 
 
 const router = express.Router();
@@ -55,8 +56,8 @@ function sendEmail(data) {
 
   var auth = {
   	auth: {
-        api_key: process.env.mailgunPearlsAPI,
-      	domain: process.env.mailgunPearlsDomain
+        api_key: mailer.mailgunPearlsAPI(),
+      	domain: mailer.mailgunPearlsDomain()
   	}
   }
 
@@ -66,7 +67,7 @@ function sendEmail(data) {
 
 	nodemailerMailgun.sendMail({
   		from: data.email, // sender address
-	    to: 'himo@pearlsbeforeswine.ca', // list of receivers
+	    to: 'mattlucas@gmail.com', // list of receivers
 	    subject: "from " + data.fullName + ":" + data.subject, // Subject line
 	    text: data.message, //, // plaintext body
 
