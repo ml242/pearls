@@ -3,8 +3,7 @@ const app = express();
 var mg = require('nodemailer-mailgun-transport');
 var path = require('path');
 var bodyParser = require('body-parser');
-var mailer = require("./mailer.js");
-
+var env = require("./mailer.js");
 
 const router = express.Router();
 
@@ -40,7 +39,7 @@ app.get('/', router);
  });
 
 app.post('/vendor', function(req, response){
-	if (req.body.pass == "pbsvendors") {
+	if (req.body.pass == env.password()) {
 		console.log('ok password');
 		response.render(__dirname + "/public/vendor.html");
 	} else {
@@ -56,8 +55,8 @@ function sendEmail(data) {
 
   var auth = {
   	auth: {
-        api_key: mailer.mailgunPearlsAPI(),
-      	domain: mailer.mailgunPearlsDomain()
+        api_key: env.mailgunPearlsAPI(),
+      	domain: env.mailgunPearlsDomain()
   	}
   }
 
@@ -67,6 +66,7 @@ function sendEmail(data) {
 
 	nodemailerMailgun.sendMail({
   		from: data.email, // sender address
+	    //to: env.himo(), // list of receivers
 	    to: 'mattlucas@gmail.com', // list of receivers
 	    subject: "from " + data.fullName + ":" + data.subject, // Subject line
 	    text: data.message, //, // plaintext body
