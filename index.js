@@ -3,7 +3,7 @@ const app = express();
 var mg = require('nodemailer-mailgun-transport');
 var path = require('path');
 var bodyParser = require('body-parser');
-var env = require("./mailer.js");
+var env = require("./env.js");
 
 const router = express.Router();
 
