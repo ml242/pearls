@@ -10,9 +10,11 @@ const router = express.Router();
 const nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 
+var cacheLifetime = 60*60*24*365*1000;
 
-//app.use(express.static('public'));
+//app.use(express.static(__dirname + '/static', { maxAge: cacheLifetime }));
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
