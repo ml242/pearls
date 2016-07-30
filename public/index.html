@@ -41,6 +41,7 @@
 	<div class="computer tablet row">
 		<div class="ui fixed inverted borderless menu navbar grid">
 			<div class="right menu">
+				<a href="#" class="item vendorContact hide">contact</a>
 				<a href="#" class="item vendor">vendors</a>
 				<a href="#" id="mute" class="item"><i class="fa fa-volume-off" aria-hidden="true"></i>
 				</a>
@@ -151,10 +152,9 @@
 	<script>
 
 		function catalogModal(){
-			$('a.catalog').on('click', function(){
-				console.log('clicked')
-				$('.ui.modal.catalogModal').modal('show');
-			});
+			$('.ui.modal.catalogModal').modal('show');
+			$('.item.vendorContact').removeClass('hide');
+			$('.item.vendor').addClass('hide');
 		}
 
 		$(document).ready(function(){
@@ -214,6 +214,11 @@
 			$('.title').on('click', function(){
 				$('.ui.modal.contact').modal('show');
 			});
+
+			$('.vendorContact').on('click', function(){
+				$('.ui.modal.vendorContact').modal('show');
+			});
+
 
 			$('.contact').on('click', function(){
 
@@ -281,10 +286,10 @@
 
 			});
 
-			$('.catalog').on('click', function(e){
-				e.preventDefault();
-				e.stopPropagation();
-			})
+//			$('.catalog').on('click', function(e){
+//				e.preventDefault();
+//				e.stopPropagation();
+//			})
 
 
 			$('.ui.submit.vendor').on('click', function(e){
@@ -389,6 +394,7 @@
 //			$('.mobilePlay img').on('click', function(){
 //
 //			})
+
 
 
 		})

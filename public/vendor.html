@@ -1,13 +1,103 @@
-<a class="catalog" href="#" onclick="catalogModal()">Download Catalog</a>
+<a class="catalog" href="#" onclick="catalogModal()">Download Catalogue</a>
 
 <div class="ui modal catalogModal segment">
 
-    <div class="column">
+    <div class="image content">
 
-        <object data="img/SSCatalogue2017.pdf" type="application/pdf" width="100%" height="800px">
+        <object data="img/SSCatalogue2017.pdf#zoom=75" type="application/pdf" width="100%" height="800px">
         </object>
+
 
     </div>
 
 </div>
 
+<div class="ui modal vendorContact segment">
+
+    <div class="column">
+
+        <form class="ui form contact" onsubmit="return false;">
+
+            <div class="field">
+                <div class="ui header centered"><h4>Contact Us</h4></div>
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <label>First name</label>
+                    <input type="text" id="firstName" placeholder="First Name">
+                </div>
+                <div class="field">
+                    <label>Last name</label>
+                    <input type="text" id="lastName" placeholder="Last Name">
+                </div>
+            </div>
+
+
+            <div class="field">
+                <label>Email Address</label>
+                <input class="" id="email" type="text" placeholder="Email Address">
+            </div>
+
+
+            <div class="one field">
+                <label>Subject</label>
+                <input class="" type="text" id="subject" placeholder="Subject">
+            </div>
+
+
+
+            <div class="one field">
+                <label>Message</label>
+                <textarea class="" type="text" id="message" placeholder="Message"></textarea>
+            </div>
+
+            <div class="ui small submit contact button" style="border: solid 1px rgba(48,48,48,.9)">Submit</div>
+
+        </form>
+    </div>
+
+</div>
+
+<script>
+    $('.ui.form.contact')
+            .form({
+                fields: {
+                    email: 'empty',
+                    firstName: 'empty',
+                    lastName: 'empty',
+                    subject: 'empty',
+                    message: 'empty'
+                }
+            });
+
+
+    $('.ui.submit.contact').on('click', function(e){
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        var name = $("#firstName").val() + " " + $("#lastName").val();
+        var email = $("#email").val();
+        var subject = $("#subject").val();
+        var message = $("#message").val();
+
+        var data = {
+            fullName: name,
+            email: email,
+            subject: subject,
+            message: message
+        };
+
+        console.log(data);
+
+        $.ajax({
+            type: "POST",
+            url: '/contact',
+            data: data
+        }).done(function(){
+            $('form').form('clear');
+            $('.ui.modal').modal('hide');
+        });
+    });
+</script>
