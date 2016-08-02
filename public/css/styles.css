@@ -147,6 +147,9 @@ h2 {
         max-width: 15%;
         padding-top: 1em;
     }
+    #mute {
+        display: none;
+    }
 }
 @media (min-width: 768px){
     .mobilePlay {
