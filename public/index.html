@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
 <!--
@@ -76,15 +76,11 @@
 
 
 	<div class="ui modal contact segment">
-
 		<div class="column">
-
 			<form class="ui form contact" onsubmit="return false;">
-
 			<div class="field">
 				<div class="ui header centered"><h4>Contact Us</h4></div>
 			</div>
-
 			  <div class="two fields">
 			    <div class="field">
 			      <label>First name</label>
@@ -96,30 +92,21 @@
 			    </div>
 			  </div>
 
-
 			    <div class="field">
 			      <label>Email Address</label>
 			      <input class="" id="email" type="text" placeholder="Email Address">
 			    </div>
-
-
 		    	<div class="one field">
 					<label>Subject</label>
 					<input class="" type="text" id="subject" placeholder="Subject">
 		    	</div>
-
-
-
 		    	<div class="one field">
 					<label>Message</label>
 					<textarea class="" type="text" id="message" placeholder="Message"></textarea>
 		    	</div>
-
 				<div class="ui small submit contact button" style="border: solid 1px rgba(48,48,48,.9)">Submit</div>
-
 			</form>
 		</div>
-
 	</div>
 
 
@@ -223,17 +210,20 @@
 
 			$('.contact').on('click', function(){
 
+
 				$('.ui.form.vendor').form('clear')
 				$('.ui.form.vendor').find('.ui.error.message').remove();
 
-				$('.ui.modal.vendor').remove();
+//				resolved glitch in the animation
+//				$('.ui.modal.vendor').remove();
 				$('.ui.modal.contact').modal('show');
+
 
 
 
 			});
 
-			$('.vendor').on('click', function(){
+			$('.item.vendor').on('click', function(){
 				$('.ui.modal.vendor').modal('show');
 			});
 
@@ -280,9 +270,8 @@
 				  data: data
 				}).done(function(){
 					$('form').form('clear');
-					$('.ui.modal').modal('hide');
+					$('.ui.modal.contact').modal('hide');
 				});
-
 
 
 			});
@@ -393,7 +382,7 @@
 			});
 
 //			$('.mobilePlay img').on('click', function(){
-//
+//				TODO: To be continued for mobile videos if need be
 //			})
 
 

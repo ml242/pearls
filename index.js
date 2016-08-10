@@ -34,7 +34,6 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.get('/', router);
 
-//router.post('/contact', jsonParser, sendEmail); // handle the route at yourdomain.com/sayHello
  app.post('/contact', function(req, response){
 	 sendEmail(req.body);
 	 response.json({"done" : true, "status" : 200});
@@ -48,12 +47,11 @@ app.post('/vendor', function(req, response){
 		console.log('failed password')
 		response.json({"done" : true, "msg": "Unauthorized", "status" : 401});
 	}
-}); // handle the route at yourdomain.com/sayHello
+});
 
 function sendEmail(data) {
 
 	// console.log('request received in sendEmail')
-
 
   var auth = {
   	auth: {
