@@ -19,10 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
-app.use(bodyParser.urlencoded({
-		extended: true
-	})
-);
+app.use(bodyParser.urlencoded({extended: true}));
 
 /**bodyParser.json(options)
  * Parses the text as JSON and exposes the resulting object on req.body.
@@ -50,27 +47,23 @@ app.post('/vendor', function(req, response){
 });
 
 function sendEmail(data) {
-
-	// console.log('request received in sendEmail')
-
   var auth = {
   	auth: {
         api_key: env.mailgunPearlsAPI(),
       	domain: env.mailgunPearlsDomain()
   	}
-  }
+  };
 
   var nodemailerMailgun = nodemailer.createTransport(mg(auth));
 
-
-
-	nodemailerMailgun.sendMail({
-  		from: data.email, // sender address
-	    to: env.himo(), // list of receivers
-	    subject: "from " + data.fullName + ":" + data.subject, // Subject line
-	    text: data.message, //, // plaintext body
-
-	}, function (err, info) {
+	nodemailerMailgun.sendMail(
+		{
+			from: data.email, // sender address
+			to: env.himo(), // list of receivers
+			subject: "from " + data.fullName + ":" + data.subject, // Subject line
+			text: data.message // plaintext body
+		},
+		function (err, info) {
   	if (err) {
     	console.log('Error: ' + err);
   	} else {

@@ -10,10 +10,10 @@ env.mailgunPearlsDomain = function() {
 
 env.himo = function() {
     return process.env.toAddress;
-}
+};
 
 env.password = function(){
     return process.env.vendorPW;
-}
+};
 
 module.exports
