@@ -345,14 +345,14 @@
 
 				vid.addEventListener('ended', myHandler, false);
 					function myHandler(e) {
-				    console.log('ended');
+				    console.log('vid ended');
 				    setTimeout(function(){
 				        vid.play();
 				    }, 5000);
 				}
-				aud.addEventListener('ended', myHandler, false);
-					function myHandler(e) {
-				    console.log('ended');
+				aud.addEventListener('ended', myAudHandler, false);
+					function myAudHandler(e) {
+				    console.log('aud ended');
 				    setTimeout(function(){
 				        aud.play();
 				    }, 5000);
