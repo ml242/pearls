@@ -6,23 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-<!--
+
 	<meta property="og:site_name" content="Pearls Before Swine"/>
 	<meta property="og:title" content="Cover Page"/>
 	<meta property="og:url" content="http://pearlsbeforeswine.ca"/>
 	<meta property="og:type" content="website"/>
-	<meta property="og:image" content="http://static1.squarespace.com/static/573cf70e1d07c0e136e34759/t/573cfde32fe1312a9580af23/1467570356048/?format=1000w"/>
 	<meta itemprop="name" content="Cover Page"/>
 	<meta itemprop="url" content="http://pearlsbeforeswine.ca/"/>
-	<meta itemprop="thumbnailUrl" content="http://static1.squarespace.com/static/573cf70e1d07c0e136e34759/t/573cfde32fe1312a9580af23/1467570356048/?format=1000w"/>
-	<link rel="image_src" href="http://static1.squarespace.com/static/573cf70e1d07c0e136e34759/t/573cfde32fe1312a9580af23/1467570356048/?format=1000w" />
-	<meta itemprop="image" content="http://static1.squarespace.com/static/573cf70e1d07c0e136e34759/t/573cfde32fe1312a9580af23/1467570356048/?format=1000w"/>
 	<meta name="twitter:title" content="Cover Page"/>
-	<meta name="twitter:image" content="http://static1.squarespace.com/static/573cf70e1d07c0e136e34759/t/573cfde32fe1312a9580af23/1467570356048/?format=1000w"/>
-	<meta name="twitter:url" content="http://pearlsbeforeswine.ca"/>
-	<meta name="twitter:card" content="summary"/>
-	<meta name="description" content="" /> -->
-
 
 	<title>Pearls Before Swine</title>
 	<link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
@@ -56,10 +47,10 @@
 
 
 	<div class="fullscreen-bg">
-		<video id="video" class="fullscreen-bg__video">
+		<video id="video" class="fullscreen-bg__video" muted>
 			<source src="" type="video/mp4">
-    	</video>
-    	<div class="video-overlay"></div>
+  	</video>
+  	<div class="video-overlay"></div>
 	</div>
 
 
@@ -132,6 +123,9 @@
 
 			</form>
 		</div>
+
+
+	<audio id="audio"><source="" type="audio/mp4" /></audio>	
 
 	</div>
 
@@ -339,7 +333,14 @@
 				}
 
 				var vid = document.getElementById("video");
+				var aud = document.getElementById("audio");
 
+				// var gainNode = aud.createGain();
+
+
+				// aud.addEventListener('onended', function() {
+				//     gainNode.gain.setTargetAtTime(0, aud.currentTime, 0.015);
+				// });
 
 
 				vid.addEventListener('ended', myHandler, false);
@@ -347,6 +348,13 @@
 				    console.log('ended');
 				    setTimeout(function(){
 				        vid.play();
+				    }, 5000);
+				}
+				aud.addEventListener('ended', myHandler, false);
+					function myHandler(e) {
+				    console.log('ended');
+				    setTimeout(function(){
+				        aud.play();
 				    }, 5000);
 				}
 
@@ -360,30 +368,40 @@
 				if (count % numVids === 0) {
 					vid.src = 'https://s3.amazonaws.com/himo/himotreetops.mp4';
 					vid.play();
+					aud.src= 'https://s3.amazonaws.com/himo/treetopaudio.mp3';
+					aud.play()
+
 				} else if (count % numVids === 1) {
 					vid.src = 'https://s3.amazonaws.com/himo/himoreflection.mp4';
 					vid.play();
+					aud.src='https://s3.amazonaws.com/himo/reflectionaudio.mp3';
+					aud.play()
+
 				} else if (count % numVids === 2){
 					vid.src = 'https://s3.amazonaws.com/himo/himofog.mp4';
 					vid.play();
+					aud.src= 'https://s3.amazonaws.com/himo/fogaudio.mp3';
+					aud.play();
 					nav.css({'color': "#666666"});
 				}
 			}
 
 			$('#mute').on('click', function () {
 
-				$.each($('video'), function () {
+				$.each($('audio'), function () {
 					this.muted = true;
 				});
 				$('#mute').toggleClass('hide');
 				$('#unmute').toggleClass('hide');
+
+
 
 			});
 
 			$('#unmute').on('click', function () {
 
 
-				$.each($('video'), function () {
+				$.each($('audio'), function () {
 					this.muted = false;
 				});
 				$('#mute').toggleClass('hide');
