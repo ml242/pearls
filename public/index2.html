@@ -360,23 +360,29 @@
 
 				var count = getCookie("visits");
 
-				var numVids = 2; //will need to be updated with future films
+				var numVids = 3; //will need to be updated with future films
 
 				var nav = $('.ui.inverted.menu .right a');
 				nav.css({color: "lightgray"});
 
 				if (count % numVids === 0) {
-					vid.src = 'https://s3.amazonaws.com/himo/reflectionaudio.mp3';
+					vid.src = 'https://s3.amazonaws.com/himo/himopollen.mp4';
 					vid.play();
 					aud.src= 'https://s3.amazonaws.com/himo/reflectionaudio.mp3';
 					aud.play()
 
 				} else if (count % numVids === 1) {
-					vid.src = 'hhttps://s3.amazonaws.com/himo/fogreverse.mp4';
+					vid.src = 'https://s3.amazonaws.com/himo/himopollen.mp4';
 					vid.play();
-					aud.src='https://s3.amazonaws.com/himo/fogaudio.mp3';
+					aud.src='https://s3.amazonaws.com/himo/reflectionaudio.mp3';
 					aud.play()
 
+				} else if (count % numVids === 2){
+					vid.src = 'https://s3.amazonaws.com/himo/himopollen.mp4';
+					vid.play();
+					aud.src= 'https://s3.amazonaws.com/himo/fogaudio.mp3';
+					aud.play();
+					nav.css({'color': "#666666"});
 				}
 			}
 
